@@ -1,0 +1,5 @@
+# o5command/kubernetes
+
+This folder contains Kubernetes deployments that concern themselves with the cluster itself. That is, everything other than "end-user" deployed apps that live on the cluster. Observability tools (Loki, Grafana, etc.) concern themselves with the cluster and are present here. ArgoCD is an infrastructure tool that may deploy some of those internal tools, so it is also present here. Keycloak serves as an authn/authz layer for both infra tooling and end-user apps, so it is present here. Something like Nextcloud, that is simply deployed on the infrastructure but does not interact with it as an infrastructure tool would, is not present here, instead it goes in the `apps` folder.
+
+Whenever possible, we use [Helm](https://helm.sh) to manage the lifecycle of any deployed service in the cluster.
