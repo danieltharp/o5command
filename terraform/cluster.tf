@@ -4,7 +4,7 @@
 resource "digitalocean_kubernetes_cluster" "cluster" {
   name     = "o5-k8s"
   region   = "sfo2"
-  vpc_uuid = digitalocean_vpc.vpc_primary.vpc_id
+  vpc_uuid = digitalocean_vpc.vpc_primary.id
 
   version = "1.33.1-do.5"
 
