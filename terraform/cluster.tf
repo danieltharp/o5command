@@ -9,7 +9,7 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
   version = "1.33.1-do.5"
 
   node_pool {
-    name       = "4gb-2cpu-80gb-node-pool"
+    name       = "basic-4gb-2cpu-80gb-nodes"
     size       = "s-2vcpu-4gb"
     auto_scale = true
     min_nodes  = 2
