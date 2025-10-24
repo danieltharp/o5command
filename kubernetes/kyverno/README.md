@@ -7,6 +7,8 @@ default namespace, as an easy way to catch problems before they're problems.
 
 ----
 
+## Installation
+
 ```
 % helm repo update
 Hang tight while we grab the latest from your chart repositories...
@@ -27,11 +29,19 @@ LAST DEPLOYED: Fri Oct 24 10:30:42 2025
 NAMESPACE: kyverno
 STATUS: deployed
 REVISION: 1
+```
 
-% k apply -n kyverno -f policies/disallow_default_namespace.yaml
+## Applying a policy
+
+```
+% kubectl apply -n kyverno -f policies/disallow_default_namespace.yaml
 clusterpolicy.kyverno.io/disallow-default-namespace created
+```
 
-% k run nginx --image=nginx
+We can then verify it's working as expected:
+
+```
+% kubectl run nginx --image=nginx
 Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
 
 resource Pod/default/nginx was blocked due to the following policies
