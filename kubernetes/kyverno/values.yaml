@@ -1,0 +1,2 @@
+kyverno:
+  namespaceOverride: kyverno
