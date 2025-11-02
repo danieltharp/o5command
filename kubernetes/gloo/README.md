@@ -72,4 +72,13 @@ virtualservice.gateway.solo.io/gloo-core-routes created
 ok%                                                                                                                                                                                                              
 % curl http://ping.o5command.com/hello
 Hello there.%
+
+% kubectl patch -n gloo-system gateway.gateway.solo.io gateway-proxy --type merge --patch "$(cat gateway-patch.yaml)"
+gateway.gateway.solo.io/gateway-proxy patched
+
+% kubectl patch -n gloo-system gateway.gateway.solo.io gateway-proxy-ssl --type merge --patch "$(cat gateway-patch.yaml)"
+gateway.gateway.solo.io/gateway-proxy-ssl patched
+
+% kubectl patch -n gloo-system svc gateway-proxy --type merge --patch "$(cat service-patch.yaml)"
+service/gateway-proxy patched
 ```

@@ -32,7 +32,7 @@ spec:
       value: 'true'
     - name: KC_HTTP_ACCESS_LOG_PATTERN
       value: 'long'
-    - name: KC_PROXY_PROTOCOL_ENABLED
-      value: 'true'
+    - name: KC_PROXY_HEADERS
+      value: 'xforwarded'
     - name: KC_FEATURES
       value: 'hostname:v2,quick-theme'
