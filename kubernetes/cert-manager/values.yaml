@@ -1,0 +1,14 @@
+cert-manager:
+  crds:
+    enabled: true
+  replicaCount: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  namespace: cert-manager
+  webhook:
+    replicaCount: 2
+  cainjector:
+    replicaCount: 2

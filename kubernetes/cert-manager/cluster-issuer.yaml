@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+  namespace: cert-manager
+spec:
+  acme:
+    email: bluesoul@scpwiki.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: cert-manager-account-key  # While this key is required to be defined it doesn't need to be created first.
+    solvers:
+      - http01:
+          ingress:
+            serviceType: ClusterIP # the service is exposed via Gloo
+            podTemplate:
+              metadata:
+                labels:
+                  role: acme-solver
+        selector:
+          dnsNames:
+            - cloud.o5command.com
+            - auth.o5command.com
+            - mail.o5command.com
+            - admin.o5command.com

@@ -1,0 +1,25 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak-admin-vs
+  namespace: gloo-system
+spec:
+  sslConfig:
+      secretRef:
+        name: keycloak-admin-certificate
+        namespace: cert-manager
+      sniDomains:
+        - admin.o5command.com
+  virtualHost:
+    domains:
+    - 'admin.o5command.com'
+    routes:
+    - matchers:
+       - prefix: /
+      routeAction:
+        single:
+          upstream:
+            name: keycloak-keycloak-service-9000
+            namespace: gloo-system
+      options:
+        autoHostRewrite: true

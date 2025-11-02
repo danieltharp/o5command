@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-auth-certificate
+  namespace: cert-manager
+spec:
+  secretName: keycloak-certificate
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: auth.o5command.com
+  dnsNames:
+    - auth.o5command.com
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-admin-certificate
+  namespace: cert-manager
+spec:
+  secretName: keycloak-admin-certificate
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: admin.o5command.com
+  dnsNames:
+    - admin.o5command.com

@@ -1,0 +1,87 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak-auth-http-vs
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - auth.o5command.com
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: auth.o5command.com
+            httpsRedirect: true
+---
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak-admin-http-vs
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - admin.o5command.com
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: admin.o5command.com
+            httpsRedirect: true
+---
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak-mail-http-vs
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - mail.o5command.com
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: mail.o5command.com
+            httpsRedirect: true
+---
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak-cloud-http-vs
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - cloud.o5command.com
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: cloud.o5command.com
+            httpsRedirect: true

@@ -1,0 +1,8 @@
+apiVersion: v2
+name: cert-manager
+description: Cloud native certificate management
+version: 1.19.1-rev0
+dependencies:
+    - name: cert-manager
+      version: 1.19.1
+      repository: https://charts.jetstack.io

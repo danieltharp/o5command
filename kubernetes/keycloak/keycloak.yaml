@@ -1,0 +1,38 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: o5-postgres-do-user-1208757-0.l.db.ondigitalocean.com
+    usernameSecret:
+      name: keycloak-db-secret
+      key: username
+    passwordSecret:
+      name: keycloak-db-secret
+      key: password
+    port: 25060
+  ingress:
+    enabled: false
+  hostname:
+    hostname: https://auth.o5command.com
+  # proxy:
+  #   headers: xforwarded # double check your reverse proxy sets and overwrites the X-Forwarded-* headers
+  http:
+    httpEnabled: true
+  env:
+    - name: KC_HTTP_ENABLED
+      value: 'true'
+    - name: KC_HOSTNAME
+      value: 'https://auth.o5command.com'
+    - name: KC_HTTP_ACCESS_LOG_ENABLED
+      value: 'true'
+    - name: KC_HTTP_ACCESS_LOG_PATTERN
+      value: 'long'
+    - name: KC_PROXY_PROTOCOL_ENABLED
+      value: 'true'
+    - name: KC_FEATURES
+      value: 'hostname:v2,quick-theme'

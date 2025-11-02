@@ -1,0 +1,19 @@
+gloo:
+  gateway:
+    deployment:
+      replicas: 2
+    validation:
+      alwaysAcceptResources: false
+  ingress:
+    enabled: false
+  settings:
+    create: true
+  discovery:
+    enabled: true
+  # gatewayProxies:
+  #   gatewayProxy:
+  #     # service:
+  #     #   extraAnnotations:
+  #     #     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+  #     # gatewaySettings:
+  #     #   useProxyProto: true

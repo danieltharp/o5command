@@ -30,7 +30,13 @@ from the `../terraform` folder if the entire environment is going away.
 
 ## Installing Services
 
-Generally via Helm, and detailed in each service's `README.md` file.
+Generally via Helm, and detailed in each service's `README.md` file. Note the
+current order of operations is:
+1. kyverno
+2. cert-manager
+3. gloo
+4. olm
+5. keycloak
 
 ## Upgrading Services
 

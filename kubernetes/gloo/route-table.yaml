@@ -1,0 +1,20 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: 'gloo-core-routes'
+  namespace: 'gloo-system'
+spec:
+  virtualHost:
+    domains:
+      - 'ping.o5command.com'
+    routes:
+      - matchers:
+          - prefix: /hello
+        directResponseAction:
+          status: 200
+          body: "Hello there."
+      - matchers:
+          - prefix: /
+        directResponseAction:
+          status: 200
+          body: "ok"

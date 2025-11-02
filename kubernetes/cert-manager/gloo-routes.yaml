@@ -1,0 +1,14 @@
+apiVersion: gateway.solo.io/v1
+kind: RouteTable
+metadata:
+  name: 'cert-manager-routes'
+  namespace: 'gloo-system'
+spec:
+  routes:
+    - matchers:
+      - prefix: /.well-known/acme-challenge/
+      routeAction:
+        single:
+          upstream:
+            name: cert-manager-acme-solver-8089
+            namespace: gloo-system
